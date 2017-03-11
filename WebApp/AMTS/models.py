@@ -4,7 +4,7 @@ from django.db import models
 
 class TextFile(models.Model):
     text_file = models.FileField(upload_to='txt_files\\%Y%m%d')
-    date = models.DateTimeField(auto_now_add=True, editable=False)
+    created = models.DateTimeField(auto_now_add=True, editable=False)
 
 
 class Machine(models.Model):
