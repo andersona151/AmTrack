@@ -1,9 +1,161 @@
-{% extends 'base.html' %}
+{# {% extends 'base.html' %}
 
-{% block content %}
+{% block content %}#}
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+
+</style>
+    <meta charset="UTF-8">
+    <title>Ameritrack Equipment Utilization Tracking</title>
+    <link rel="stylesheet" href="/WebApp/AMTS/templates/CSS_Stylesheets/bootstrap-3.2.0-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/WebApp/AMTS/templates/CSS_Stylesheets/bootstrap-3.2.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/WebApp/AMTS/templates/CSS_Stylesheets/report.css">
+</head>
 <body>
 
-</body>
+<header>
+    <div class="container">
+        <div class="logoRow">
+            <img src="/WebApp/AMTS/templates/images/logo.gif">
+            <div class="pull-right">
+                <p id="logout"><a>Logout</a></p>
+            </div>
+        </div>
+    </div>
+    <p>&nbsp;</p>
+	<div class="railroad">
+        <img>
+        <p>&nbsp;</p>
+	</div>
 
-{% endblock %}
+</header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Enter Machine ID Here">
+                    <span class="input-group-addon">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span class="caret"></span>
+                                </button>
+                    </span>
+                    <span class="input-group-addon">
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true">
+                            </span>
+                        </button>
+                    </span>
+                    <!--The code commented out below makes the buttons on top of each other.-->
+                    <!--<div class="input-group-btn">
+                        <div class="btn-group" role="group">
+                            <div class="dropdown dropdown-lg">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <span class="caret"></span>
+                                </button>
+                            </div>
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true">
+                                </span>
+                            </button>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="container">
+                    <div class="row">
+                        <h3>Start Date</h3>
+                        <div class="col-md-3">
+                            <div class="input-group pull-left">
+                                <input type="text" class="form-control" placeholder="mm" size="2">
+                                <p><a>Today</a></p>
+                            </div>
+                            <span style="font-size:30px;" class="pull-left">/</span>
+                            <div class="input-group pull-left">
+                                <input type="text" class="form-control" placeholder="dd" size="2">
+                            </div>
+                            <span style="font-size:30px;" class="pull-left">/</span>
+                            <div class="input-group pull-left">
+                                <input type="text" class="form-control" placeholder="yyyy" size="5">
+                            </div>
+                            <button class="btn-datepicker"> <!--Need to add JQuery-->
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-3">
+                <div class="container">
+                    <div class="row">
+                        <h3>End Date</h3>
+                        <div class="col-md-3">
+                            <div class="input-group pull-left">
+                                <input type="text" class="form-control" placeholder="mm" size="2">
+                                <p><a>Today</a></p>
+                            </div>
+                            <span style="font-size:30px;" class="pull-left">/</span>
+                            <div class="input-group pull-left">
+                                <input type="text" class="form-control" placeholder="dd" size="2">
+                            </div>
+                            <span style="font-size:30px;" class="pull-left">/</span>
+                            <div class="input-group pull-left">
+                                <input type="text" class="form-control" placeholder="yyyy" size="5">
+                            </div>
+                            <button class="btn-datepicker"> <!--Need to add JQuery-->
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Equipment Item and Number</h1>
+                <h2>Report Date</h2>
+                <p>From: </p>
+                <p>To: </p>
+                <div class="btn-group">
+                    <button type="button" disabled>On</button>
+                    <button type="button" disabled>Off</button>
+                </div>
+
+                <p>Hours "On": </p>
+                <p>Distance Traveled: </p>
+                <p>Longitude:</p>
+                <p>Latitude: </p>
+                <a href="#"><u>More Logs</u></a>
+            </div>
+            <div class="col-md-6">
+                <div id="map"></div>
+                <script>
+                    function initMap(){
+                        var uluru = {lat: -25.363, lng: 131.044};
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                          zoom: 4,
+                          center: uluru
+                        });
+                        var marker = new google.maps.Marker({
+                          position: uluru,
+                          map: map
+                        });
+                    }
+                </script>
+                <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRBU0ObkI4xr-QqnDARMzx9xJHq8qWQ0s&callback=initMap">
+                </script>
+            </div>
+        </div>
+    </div>
+<footer>
+</footer>
+</body>
+</html>
+
+
+{# {% endblock %}#}

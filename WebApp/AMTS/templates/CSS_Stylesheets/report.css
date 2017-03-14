@@ -1,0 +1,22 @@
+div.logoRow{
+    /*background-color: #e5ebf4;*/
+}
+body{
+    background-color: #e5ebf4;
+}
+div.railroad{
+    background-color: #CC0000;
+}
+#map {
+    height: 500px;
+    width: 100%;
+}
+p#logout{
+    padding-top: 40px;
+}
+div.search{
+    padding-top: 55px;
+}
+/*div.line{
+    border: 3px solid #CC0000;
+}**/
