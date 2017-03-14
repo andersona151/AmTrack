@@ -14,5 +14,9 @@ def login(request):
     return render(request, 'login.html', {})
 
 
+def reports(request):
+    return render(request, 'reports.html', {})
+
+
 
 
