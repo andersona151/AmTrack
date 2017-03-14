@@ -1,37 +1,61 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<head>
-    <title>Ameritrack Equipment Utilization Tracking</title>
-    <link rel="stylesheet" href="/WebApp/AMTS/templates/CSS_Stylesheets/bootstrap-3.2.0-dist/css/bootstrap.css">
-    <link rel="stylesheet" href="/WebApp/AMTS/templates/CSS_Stylesheets/bootstrap-3.2.0-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/WebApp/AMTS/templates/CSS_Stylesheets/report.css">
-</head>
-<body>
+    <head>
+        <style>
+            div.railroad {
+                background-color: #CC0000;
+            }
 
-<header>
-    <div class="container">
-        <div class="logoRow">
-            <img src="/WebApp/AMTS/templates/images/logo.gif">
-            <div class="pull-right">
-                <p id="logout"><a>Logout</a></p>
+            #map {
+                height: 500px;
+                width: 100%;
+            }
+
+            p#logout {
+                padding-top: 40px;
+            }
+
+            div.search {
+                padding-top: 55px;
+            }
+            body{
+                background-color: #e5ebf4;
+            }
+
+        </style>
+        <title>Ameritrack Equipment Utilization Tracking</title>
+        <link rel="stylesheet" href="/WebApp/AMTS/templates/CSS_Stylesheets/bootstrap-3.2.0-dist/css/bootstrap.css">
+        <link rel="stylesheet" href="/WebApp/AMTS/templates/CSS_Stylesheets/bootstrap-3.2.0-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/WebApp/AMTS/templates/CSS_Stylesheets/report.css">
+
+    </head>
+    <body>
+
+    <header>
+        <div class="container">
+            <div class="logoRow">
+                <img src="images/logo.png">
+                <div class="pull-right">
+                    <p id="logout"><a>Logout</a></p>
+                </div>
             </div>
         </div>
-    </div>
-    <p>&nbsp;</p>
-	<div class="railroad">
-        <img>
         <p>&nbsp;</p>
-	</div>
+        <div class="railroad">
+            <img>
+            <p>&nbsp;</p>
+        </div>
 
-</header>
+    </header>
     <div class="container">
         <div class="row">
             <div class="col-md-6 search">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Enter Machine ID Here">
                     <span class="input-group-addon">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                aria-expanded="false">
                                     <span class="caret"></span>
                                 </button>
                     </span>
@@ -127,27 +151,27 @@
             <div class="col-md-6">
                 <div id="map"></div>
                 <script>
-                    function initMap(){
+                    function initMap() {
                         var uluru = {lat: -25.363, lng: 131.044};
                         var map = new google.maps.Map(document.getElementById('map'), {
-                          zoom: 4,
-                          center: uluru
+                            zoom: 4,
+                            center: uluru
                         });
                         var marker = new google.maps.Marker({
-                          position: uluru,
-                          map: map
+                            position: uluru,
+                            map: map
                         });
                     }
                 </script>
                 <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRBU0ObkI4xr-QqnDARMzx9xJHq8qWQ0s&callback=initMap">
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRBU0ObkI4xr-QqnDARMzx9xJHq8qWQ0s&callback=initMap">
                 </script>
             </div>
         </div>
     </div>
-<footer>
-</footer>
-</body>
-</html>
+    <footer>
+    </footer>
+    </body>
+    </html>
 
 {% endblock %}
