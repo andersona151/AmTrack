@@ -1,10 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
     <head>
+        <title>{{ Title }}</title>
         <style>
             body {
                 width: auto;
                 margin: 0;
+            }
+
+            #slashes {
+                font-size: 30px;
+            }
+
+            #map {
+                height: 500px;
+                width: auto;
             }
 
             div.railserve {
@@ -47,6 +57,7 @@
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
                 crossorigin="anonymous"></script>
     </head>
+
     <body style="background-color: #c4e3f3">
     <section class="header">
         <!-- Navbar -->
@@ -76,6 +87,7 @@
     <section class="main-header">
         <div class="container-fluid">
 
+            <!-- Row of inputs -->
             <div class="row">
                 <!-- ID Search -->
                 <div class="col-sm-6">
@@ -85,8 +97,8 @@
                         <div class="input-group-btn">
                             <!-- Button and dropdown menu -->
                             <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Search</button>
-                        </span>
+                                <button class="btn btn-default" type="button">Search</button>
+                            </span>
                         </div>
                     </div>
                 </div> <!-- End col-md-4 -->
@@ -100,13 +112,13 @@
                         <input type="text" class="form-control" aria-label="..." placeholder="MM" size="2">
                         <p><a href="#">Today</a></p>
                     </div>
-                    <span style="font-size: 30px" class="pull-left">/</span>
+                    <span id="slashes" class="pull-left">/</span>
 
                     <!-- DD -->
                     <div class="input-group pull-left">
                         <input type="text" class="form-control" placeholder="DD" size="2">
                     </div>
-                    <span style="font-size: 30px" class="pull-left">/</span>
+                    <span id="slashes" class="pull-left">/</span>
 
                     <!-- YYYY -->
                     <div class="input-group pull-left">
@@ -119,16 +131,16 @@
                     <h3>End Date</h3>
                     <!-- MM -->
                     <div class="input-group pull-left">
-                        <input type="text" class="form-control" aria-label="..." placeholder="MM" size="2">
+                        <input type="text" class="form-control" aria-label="..." placeholder="MM" size="3">
                         <p><a href="#">Today</a></p>
                     </div>
-                    <span style="font-size: 30px" class="pull-left">/</span>
+                    <span id="slashes" class="pull-left">/</span>
 
                     <!-- DD -->
                     <div class="input-group pull-left">
-                        <input type="text" class="form-control" placeholder="DD" size="2">
+                        <input type="text" class="form-control" placeholder="DD" size="3">
                     </div>
-                    <span style="font-size: 30px" class="pull-left">/</span>
+                    <span id="slashes" class="pull-left">/</span>
 
                     <!-- YYYY -->
                     <div class="input-group pull-left">
@@ -157,7 +169,7 @@
                 </div>
                 <!-- Right Container -->
                 <div class="col-md-6">
-                    <div id="map" style="height: 500px; width: auto;"></div>
+                    <div id="map"></div>
                     <script>
                         function initMap() {
                             var uluru = {lat: -25.363, lng: 131.044};
@@ -174,7 +186,6 @@
                     <script async defer
                             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRBU0ObkI4xr-QqnDARMzx9xJHq8qWQ0s&callback=initMap">
                     </script>
-
                 </div>
             </div>
         </div>
@@ -184,5 +195,4 @@
         <!-- TODO: Railserve info footer -->
     </footer>
     </body>
-
 {% endblock %}

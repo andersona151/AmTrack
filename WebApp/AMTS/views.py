@@ -15,4 +15,4 @@ def login(request):
 
 
 def reports(request):
-    return render(request, 'reports.html', {})
+    return render(request, 'reports.html', {"Title": "Ameritrack Equipment Utilization Tracking", })
