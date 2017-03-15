@@ -7,7 +7,7 @@ def home(request):
 
 
 def dashboard(request):
-    return render(request, 'base.html', {'beast': 'austin', } )
+    return render(request, 'base.html', {'beast': 'austin'})
 
 
 def login(request):
@@ -16,7 +16,3 @@ def login(request):
 
 def reports(request):
     return render(request, 'reports.html', {})
-
-
-
-

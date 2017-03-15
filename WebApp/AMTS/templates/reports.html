@@ -1,196 +1,188 @@
 {% extends 'base.html' %}
 {% block content %}
-
     <head>
         <style>
-            div.railroad {
+            body {
+                width: auto;
+                margin: 0;
+            }
+
+            div.railserve {
                 background-color: #CC0000;
             }
 
-            #map {
-                height: 500px;
+            .navbar-custom {
+                background-color: #c4e3f3;
+                color: #ffffff;
+                border-radius: 0;
             }
 
-            p#logout {
-                padding-top: 40px;
+            .navbar-custom .navbar-nav > li > a {
+                color: black;
             }
 
-            div.search {
-                padding-top: 55px;
+            .navbar-custom .navbar-nav > .active > a, .navbar-nav > .active > a:hover, .navbar-nav > .active > a:focus {
+                color: black;
+                background-color: transparent;
             }
 
-            body {
-                width: 100%;
-                margin: 0;
-                background-color: #e5ebf4;
+            .navbar-custom .navbar-brand {
+                color: black;
             }
 
         </style>
-        <title>Ameritrack Equipment Utilization Tracking</title>
-        <!-- Latest compiled and minified jQuery -->
-        <script
-                src="https://code.jquery.com/jquery-2.2.4.min.js"
+
+        <!-- Latest compiled and minified jQuery (MUST BE BEFORE BOOTSTRAP.MIN.CSS)-->
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"
                 integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
                 crossorigin="anonymous"></script>
+
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
               integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
               crossorigin="anonymous">
+
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
                 crossorigin="anonymous"></script>
-
     </head>
-    <body>
-
-    <header>
-        <div class="container">
-            <div class="logoRow">
-                <img src="images/logo.png">
-                <div class="pull-right">
-                    <p id="logout"><a>Logout</a></p>
+    <body style="background-color: #c4e3f3">
+    <section class="header">
+        <!-- Navbar -->
+        <nav class="navbar navbar-custom" style="margin-bottom: 0">
+            <div class="container-fluid">
+                <!-- Brand collapse / mobile display -->
+                <!-- TODO: Add IMG logo -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">[AmTrack Logo Here]</a>
                 </div>
-            </div>
-        </div>
-        <p>&nbsp;</p>
-        <div class="railroad">
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- TODO: Austin, add python authentication -->
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+        <div class="railserve">
             <img>
             <p>&nbsp;</p>
         </div>
-    </header>
+    </section>
 
+    <section class="main-header">
+        <div class="container-fluid">
 
-    <div class="container center">
-        <div class="row">
-            <div class="col-md-6 search">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Enter Machine ID Here">
-                    <span class="input-group-addon">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                                aria-expanded="false">
-                                    <span class="caret"></span>
-                                </button>
-                    </span>
-                    <span class="input-group-addon">
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-search" aria-hidden="true">
-                            </span>
-                        </button>
-                    </span>
-                    <!--The code commented out below makes the buttons on top of each other.-->
-                    <!--<div class="input-group-btn">
-                        <div class="btn-group" role="group">
-                            <div class="dropdown dropdown-lg">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <span class="caret"></span>
-                                </button>
-                            </div>
-                            <button type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-search" aria-hidden="true">
-                                </span>
-                            </button>
-                        </div>
-                    </div>-->
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="container">
-                    <div class="row">
-                        <h3>Start Date</h3>
-                        <div class="col-md-3">
-                            <div class="input-group pull-left">
-                                <input type="text" class="form-control" placeholder="mm" size="2">
-                                <p><a>Today</a></p>
-                            </div>
-                            <span style="font-size:30px;" class="pull-left">/</span>
-                            <div class="input-group pull-left">
-                                <input type="text" class="form-control" placeholder="dd" size="2">
-                            </div>
-                            <span style="font-size:30px;" class="pull-left">/</span>
-                            <div class="input-group pull-left">
-                                <input type="text" class="form-control" placeholder="yyyy" size="5">
-                            </div>
-                            <button class="btn-datepicker"> <!--Need to add JQuery-->
-                            </button>
+            <div class="row">
+                <!-- ID Search -->
+                <div class="col-sm-6">
+                    <h3>Search</h3>
+                    <div class="input-group">
+                        <input type="text" class="form-control" aria-label="..." placeholder="Machine ID Here...">
+                        <div class="input-group-btn">
+                            <!-- Button and dropdown menu -->
+                            <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Search</button>
+                        </span>
                         </div>
                     </div>
-                </div>
+                </div> <!-- End col-md-4 -->
 
-            </div>
-            <div class="col-md-3">
-                <div class="container">
-                    <div class="row">
-                        <h3>End Date</h3>
-                        <div class="col-md-3">
-                            <div class="input-group pull-left">
-                                <input type="text" class="form-control" placeholder="mm" size="2">
-                                <p><a>Today</a></p>
-                            </div>
-                            <span style="font-size:30px;" class="pull-left">/</span>
-                            <div class="input-group pull-left">
-                                <input type="text" class="form-control" placeholder="dd" size="2">
-                            </div>
-                            <span style="font-size:30px;" class="pull-left">/</span>
-                            <div class="input-group pull-left">
-                                <input type="text" class="form-control" placeholder="yyyy" size="5">
-                            </div>
-                            <button class="btn-datepicker"> <!--Need to add JQuery-->
-                            </button>
-                        </div>
+
+                <!-- Start Date -->
+                <div class="col-sm-3">
+                    <h3>Start Date</h3>
+                    <!-- MM -->
+                    <div class="input-group pull-left">
+                        <input type="text" class="form-control" aria-label="..." placeholder="MM" size="2">
+                        <p><a href="#">Today</a></p>
+                    </div>
+                    <span style="font-size: 30px" class="pull-left">/</span>
+
+                    <!-- DD -->
+                    <div class="input-group pull-left">
+                        <input type="text" class="form-control" placeholder="DD" size="2">
+                    </div>
+                    <span style="font-size: 30px" class="pull-left">/</span>
+
+                    <!-- YYYY -->
+                    <div class="input-group pull-left">
+                        <input type="text" class="form-control" placeholder="YYYY" size="5">
+                    </div>
+                </div> <!-- End col-md-4 -->
+
+                <!-- End Date -->
+                <div class="col-sm-3">
+                    <h3>End Date</h3>
+                    <!-- MM -->
+                    <div class="input-group pull-left">
+                        <input type="text" class="form-control" aria-label="..." placeholder="MM" size="2">
+                        <p><a href="#">Today</a></p>
+                    </div>
+                    <span style="font-size: 30px" class="pull-left">/</span>
+
+                    <!-- DD -->
+                    <div class="input-group pull-left">
+                        <input type="text" class="form-control" placeholder="DD" size="2">
+                    </div>
+                    <span style="font-size: 30px" class="pull-left">/</span>
+
+                    <!-- YYYY -->
+                    <div class="input-group pull-left">
+                        <input type="text" class="form-control" placeholder="YYYY" size="5">
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h1>Equipment Item and Number</h1>
-                <h2>Report Date</h2>
-                <p>From: </p>
-                <p>To: </p>
-                <div class="btn-group">
-                    <button type="button" disabled>On</button>
-                    <button type="button" disabled>Off</button>
-                </div>
+    </section>
 
-                <p>Hours "On": </p>
-                <p>Distance Traveled: </p>
-                <p>Longitude:</p>
-                <p>Latitude: </p>
-                <a href="#"><u>More Logs</u></a>
-            </div>
-            <div class="col-md-6">
-                <div id="map"></div>
-                <script>
-                    function initMap() {
-                        var uluru = {lat: -25.363, lng: 131.044};
-                        var map = new google.maps.Map(document.getElementById('map'), {
-                            zoom: 4,
-                            center: uluru
-                        });
-                        var marker = new google.maps.Marker({
-                            position: uluru,
-                            map: map
-                        });
-                    }
-                </script>
-                <script async defer
-                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRBU0ObkI4xr-QqnDARMzx9xJHq8qWQ0s&callback=initMap">
-                </script>
+    <section class="main-body">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Left Container -->
+                <div class="col-lg-6">
+                    <!-- TODO: Grab from database the names and ID -->
+                    <h1>[Equipment Item] & [Number]</h1>
+                    <!-- TODO: Generate date of report -->
+                    <h2>[Report Date]</h2>
+                    <h3>From:</h3>
+                    <h3>To:</h3>
+                    <h3>Distance Traveled:</h3>
+                    <h3>Longitude:</h3>
+                    <h3>Latitude:</h3>
+                    <h3><a href="#">More Logs...</a></h3>
+                </div>
+                <!-- Right Container -->
+                <div class="col-md-6">
+                    <div id="map" style="height: 500px; width: auto;"></div>
+                    <script>
+                        function initMap() {
+                            var uluru = {lat: -25.363, lng: 131.044};
+                            var map = new google.maps.Map(document.getElementById('map'), {
+                                zoom: 4,
+                                center: uluru
+                            });
+                            var marker = new google.maps.Marker({
+                                position: uluru,
+                                map: map
+                            });
+                        }
+                    </script>
+                    <script async defer
+                            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRBU0ObkI4xr-QqnDARMzx9xJHq8qWQ0s&callback=initMap">
+                    </script>
+
+                </div>
             </div>
         </div>
-    </div>
-
+    </section>
 
     <footer>
-        <!-- Railserver Info here -->
+        <!-- TODO: Railserve info footer -->
     </footer>
-
-
     </body>
-
-    </html>
 
 {% endblock %}
