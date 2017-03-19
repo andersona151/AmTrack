@@ -2,10 +2,104 @@
 
 {% block content %}
 
-<body>
-    Username: <input type="text" name="username"><br>
-    Password: <input type="text" name="pword"><br>
-    <input type="submit" value="Submit">
-</body>
+    <head>
+        <title>{{ Title }}</title>
+        <style>
+            @import url(http://fonts.googleapis.com/css?family=Roboto:400);
+
+            body {
+                background-color: #fff;
+                -webkit-font-smoothing: antialiased;
+                font: normal 14px Roboto, arial, sans-serif;
+            }
+
+            .form-login {
+                background-color: #EDEDED;
+                padding: 10px 20px 20px;
+                border-radius: 15px;
+                border: 5px #d2d2d2;
+                box-shadow: 0 1px 0 #cfcfcf;
+            }
+
+            h4 {
+                border: 0 solid #fff;
+                border-bottom-width: 1px;
+                padding-bottom: 10px;
+                text-align: center;
+            }
+
+            .form-control {
+                border-radius: 10px;
+            }
+
+            .wrapper {
+                text-align: center;
+            }
+
+            .container-fluid {
+                height: 100%;
+                display: table;
+                width: 100%;
+                padding: 0;
+            }
+
+            .row-fluid {
+                height: 100%;
+                display: table-cell;
+                vertical-align: middle;
+            }
+
+            .centering {
+                float: none;
+                margin: 0 auto;
+            }
+
+        </style>
+        <!-- Latest compiled and minified jQuery (MUST BE BEFORE BOOTSTRAP.MIN.CSS)-->
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+                integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+                crossorigin="anonymous"></script>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+                crossorigin="anonymous"></script>
+    </head>
+
+
+    <body style="background-color: #c4e3f3; height: 100%; margin: 0; padding: 0;">
+
+    <!--Pulling Awesome Font -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="centering text-center">
+                <div class="col-md-offset-5 col-md-3">
+                    <div class="form-login">
+                        <h4>Ameritrack Rail</h4>
+                        <input type="text" id="userName" class="form-control input-sm chat-input"
+                               placeholder="username"/>
+                        </br>
+                        <input type="text" id="userPassword" class="form-control input-sm chat-input"
+                               placeholder="password"/>
+                        </br>
+                        <div class="wrapper">
+            <span class="group-btn">
+                <a href="#" class="btn btn-primary btn-md">login <i class="fa fa-sign-in"></i></a>
+            </span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
 
 {% endblock %}
