@@ -4,56 +4,6 @@
 
     <head>
         <title>{{ Title }}</title>
-        <style>
-            @import url(http://fonts.googleapis.com/css?family=Roboto:400);
-
-            body {
-                -webkit-font-smoothing: antialiased;
-                font: normal 14px Roboto, arial, sans-serif;
-            }
-
-            .form-login {
-                background-color: #EDEDED;
-                padding: 10px 20px 20px;
-                border-radius: 15px;
-                border: 5px #d2d2d2;
-                box-shadow: 0 1px 0 #cfcfcf;
-            }
-
-            h4 {
-                border: 0 solid #fff;
-                border-bottom-width: 1px;
-                padding-bottom: 10px;
-                text-align: center;
-            }
-
-            .form-control {
-                border-radius: 10px;
-            }
-
-            .wrapper {
-                text-align: center;
-            }
-
-            .container-fluid {
-                height: 100%;
-                display: table;
-                width: 100%;
-                padding: 0;
-            }
-
-            .row-fluid {
-                height: 100%;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .centering {
-                float: none;
-                margin: 0 auto;
-            }
-
-        </style>
         <!-- Latest compiled and minified jQuery (MUST BE BEFORE BOOTSTRAP.MIN.CSS)-->
         <script src="https://code.jquery.com/jquery-2.2.4.min.js"
                 integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
@@ -68,6 +18,14 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
                 crossorigin="anonymous"></script>
+        <!-- FontAwesome compiled and minified -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+              integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+              crossorigin="anonymous">
+
+        <!-- Stylesheet -->
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static 'CSS/login-styles.css' %}"/>
     </head>
 
 
@@ -80,7 +38,7 @@
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="centering text-center">
-                <div class="col-md-offset-5 col-md-3">
+                <div class="col-md-offset-5 col-md-3" style="margin-left: 600px;">
                     <div class="form-login">
                         <h3>Ameritrack Rail</h3>
                         <input type="text" id="userName" class="form-control input-md"
