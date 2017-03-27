@@ -21,6 +21,15 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
                 crossorigin="anonymous"></script>
+        <!-- Include Required Prerequisites for the Date Picker-->
+        <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css"/>
+
+        <!-- Include Date Range Picker -->
+        <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+        <link rel="stylesheet" type="text/css"
+              href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css"/>
     </head>
 
     <body style="background-color: #c4e3f3">
@@ -77,20 +86,16 @@
                     <h3>Start Date</h3>
                     <!-- MM -->
                     <div class="input-group pull-left">
-                        <input type="text" class="form-control" aria-label="..." placeholder="MM" size="2">
+                        <input type="text" name="startdate" value=""/>
+                        <script type="text/javascript">
+                            $(function () {
+                                $("input[name=\"startdate\"]").daterangepicker({
+                                    singleDatePicker: true,
+                                    showDropdowns: true
+                                });
+                            });
+                        </script>
                         <p><a href="#">Today</a></p>
-                    </div>
-                    <span id="slashes" class="pull-left">/</span>
-
-                    <!-- DD -->
-                    <div class="input-group pull-left">
-                        <input type="text" class="form-control" placeholder="DD" size="2">
-                    </div>
-                    <span id="slashes" class="pull-left">/</span>
-
-                    <!-- YYYY -->
-                    <div class="input-group pull-left">
-                        <input type="text" class="form-control" placeholder="YYYY" size="5">
                     </div>
                 </div> <!-- End col-md-4 -->
 
@@ -99,20 +104,16 @@
                     <h3>End Date</h3>
                     <!-- MM -->
                     <div class="input-group pull-left">
-                        <input type="text" class="form-control" aria-label="..." placeholder="MM" size="3">
+                        <input type="text" name="enddate" value=""/>
+                        <script type="text/javascript">
+                            $(function () {
+                                $("input[name=\"enddate\"]").daterangepicker({
+                                    singleDatePicker: true,
+                                    showDropdowns: true
+                                });
+                            });
+                        </script>
                         <p><a href="#">Today</a></p>
-                    </div>
-                    <span id="slashes" class="pull-left">/</span>
-
-                    <!-- DD -->
-                    <div class="input-group pull-left">
-                        <input type="text" class="form-control" placeholder="DD" size="3">
-                    </div>
-                    <span id="slashes" class="pull-left">/</span>
-
-                    <!-- YYYY -->
-                    <div class="input-group pull-left">
-                        <input type="text" class="form-control" placeholder="YYYY" size="5">
                     </div>
                 </div>
             </div>
