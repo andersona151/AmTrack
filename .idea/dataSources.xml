@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="db.sqlite3" uuid="c07c5be2-8127-4b2c-9b31-99acef81184e">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/WebApp/db.sqlite3</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="EquipmentTrackingDB@TCVM179381-03" uuid="5adb3384-7224-4c27-b898-33037cf0335d">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://TCVM179381-03\MSSQL11.MSSQLSERVER:1433;databaseName=EquipmentTrackingDB</jdbc-url>
+      <driver-properties>
+        <property name="integratedSecurity" value="true" />
+      </driver-properties>
+    </data-source>
+  </component>
+</project>

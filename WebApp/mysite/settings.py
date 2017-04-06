@@ -77,8 +77,11 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'sqlserver_ado',
+        'NAME': 'EquipmentTrackingDB',
+        'Host': 'TCVM179381-03',
+        'USER': 'TCVM179381-03\KSUAmeritrackEquip',
+        'PASSWORD': 'Thepriceoftea1!'
     }
 }
 
