@@ -21,6 +21,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
                 crossorigin="anonymous"></script>
+
         <!-- Include Required Prerequisites for the Date Picker-->
         <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
@@ -56,9 +57,9 @@
             </div><!-- /.container-fluid -->
         </nav>
 
-       <!-- <div class="railserve">
-            <p>&nbsp;</p>
-        </div>-->
+        <!-- <div class="railserve">
+             <p>&nbsp;</p>
+         </div>-->
     </section>
 
     <section class="main-header">
@@ -141,13 +142,14 @@
                     <div id="map"></div>
                     <script>
                         function initMap() {
-                            var uluru = {lat: -25.363, lng: 131.044};
-                            var map = new google.maps.Map(document.getElementById('map'), {
-                                zoom: 4,
-                                center: uluru
+                            const location = {lat: 33.7676338, lng: -84.5606888}; {% comment %} Default Location: Atlanta, GA {% endcomment %}
+                            const map = new google.maps.Map(document.getElementById('map'), {
+                                zoom: 12, {% comment %} Zoomed in more, but slower. Will be necessary. {%  endcomment %}
+                                center: location,
                             });
-                            var marker = new google.maps.Marker({
-                                position: uluru,
+                            const marker = new google.maps.Marker({
+                                position: location,
+                                title: "Marker Title",
                                 map: map
                             });
                         }
@@ -166,17 +168,16 @@
     </body>
 
     <script>
-        <!--$( "#search_button" ).click(function() {-->
-          <!--alert( "Handler for .click() called." );-->
-        <!--});-->
-        $( "#search_button" ).click(function() {
-            $.ajax({
-                method: "GET",
-                url: "localhost:8000/machine_search",
-                data: {}
-              });
-        });
+        {% comment %}$("#search_button").click(function () {
+            alert("Handler for .click() called.");
+        });{% endcomment %}
 
+        {% comment %} $("#search_button").click(function () {
+             $.get('http://localhost:8080/machine_search',
+                 function
+                     (data) {
+                     alert("Data: " + data)
+                 });
+         });{% endcomment %}
     </script>
-
 {% endblock %}
