@@ -8,9 +8,10 @@ class TextFile(models.Model):
 
 
 class Machine(models.Model):
+    machine_uid = models.IntegerField(editable=True)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     speed = models.DecimalField(max_digits=9, decimal_places=3)
-    date = models.DateTimeField(auto_now_add=False, editable=False)
+    date = models.DateTimeField(auto_now_add=False, editable=True)
     powered_on = models.BooleanField(default=False)
     idle = models.BooleanField(default=False)

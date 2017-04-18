@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login as auth_login, logout
 
 
@@ -35,12 +36,27 @@ def login(request):
                                           })
 
 
+@csrf_exempt
+def my_view(request):
+    return HttpResponse('Hello world')
+
+
 def logout_view(request):
     logout(request)
     return redirect('login')
 
 
 @login_required
+@csrf_exempt
 def machine_search(request):
-    return render(request, 'base.html', {})
+    req_data = request.POST
+    start_date = req_data['start_date']
+    end_date = req_data['end_date']
+    machine_id = req_data['machine_id']
+    # print(start_date)
+    # print(end_date)
+    # print(machine_id)
+    data = {}
+    # calcs here
+    return JsonResponse(data)
 
