@@ -140,11 +140,13 @@
                 <!-- Right Container -->
                 <div class="col-md-6">
                     <div id="map"></div>
+                    <!--TODO: For loop markers at chosen parameters-->
                     <script>
                         function initMap() {
-                            const location = {lat: 33.7676338, lng: -84.5606888}; {% comment %} Default Location: Atlanta, GA {% endcomment %}
+                            const location = {lat: 33.9397129, lng: -84.5218453};
+                            {% comment %} Default Location: Atlanta, GA {% endcomment %}
                             const map = new google.maps.Map(document.getElementById('map'), {
-                                zoom: 12, {% comment %} Zoomed in more, but slower. Will be necessary. {%  endcomment %}
+                                zoom: 13, {% comment %} Zoomed in more, but slower. Will be necessary. {%  endcomment %}
                                 center: location,
                             });
                             const marker = new google.maps.Marker({
@@ -164,6 +166,11 @@
 
     <footer>
         <!-- TODO: Railserve info footer -->
+        <p style="padding-top: 20px" align="center">
+            Railserve, Inc
+            <br>
+            &copy; 2017
+        </p>
     </footer>
     </body>
 
