@@ -182,16 +182,21 @@
     </footer>
     </body>
     <script>
-        {% comment %}$("#search_button").click(function () {
-            alert("Handler for .click() called.");
-        });{% endcomment %}
-
-        {% comment %} $("#search_button").click(function () {
-             $.get('http://localhost:8080/machine_search',
-                 function
-                     (data) {
-                     alert("Data: " + data)
-                 });
-         });{% endcomment %}
+        $("#search_button").on("click", function () {
+            const start_date = $("input[name=\"startdate\"]").val();
+            const end_date = $("input[name=\"enddate\"]").val();
+            const machine_id = $("#machine_id").val();
+            console.log(start_date);
+            console.log(end_date);
+            console.log(machine_id);
+            $.ajax({
+                url: '/reports/machine_search',
+                type: 'POST',
+                data: {'start_date': start_date, 'end_date': end_date, 'machine_id': machine_id},
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+        })
     </script>
 {% endblock %}
