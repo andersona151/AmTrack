@@ -6,9 +6,12 @@
         <!-- Stylesheet -->
         {% load staticfiles %}
         <link rel="stylesheet" href="{% static 'CSS/report-styles.css' %}"/>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/3/css/bootstrap.css"/>
-        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css"/>
+        <link rel="stylesheet" type="text/css"
+              href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css"/>
     </head>
 
     <body style="background-color: #e5ebf4">
@@ -34,9 +37,9 @@
             </div><!-- /.container-fluid -->
         </nav>
 
-       <!-- <div class="railserve">
-            <p>&nbsp;</p>
-        </div>-->
+        <!-- <div class="railserve">
+             <p>&nbsp;</p>
+         </div>-->
     </section>
 
     <section class="main-header">
@@ -48,7 +51,8 @@
                 <div class="col-sm-6">
                     <h3>Search</h3>
                     <div class="input-group">
-                        <input type="text" id="machine_id" class="form-control" aria-label="..." placeholder="Machine ID Here...">
+                        <input type="text" id="machine_id" class="form-control" aria-label="..."
+                               placeholder="Machine ID Here...">
                         <div class="input-group-btn">
                             <!-- Button and dropdown menu -->
                             <span class="input-group-btn">
@@ -119,16 +123,31 @@
                 <div class="col-md-6">
                     <div id="map"></div>
                     <script>
+                        const locations = [
+                            ['Bondi Beach', -33.890542, 151.274856, 4],
+                            ['Coogee Beach', -33.923036, 151.259052, 5],
+                            ['Cronulla Beach', -34.028249, 151.157507, 3],
+                            ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+                            ['Maroubra Beach', -33.950198, 151.259302, 1]
+                        ];
+
                         function initMap() {
-                            var uluru = {lat: -25.363, lng: 131.044};
-                            var map = new google.maps.Map(document.getElementById('map'), {
-                                zoom: 4,
-                                center: uluru
+                            const myLatLng = {lat: -33.90, lng: 151.16};
+
+                            const map = new google.maps.Map(document.getElementById('map'), {
+                                zoom: 11,
+                                center: myLatLng
                             });
-                            var marker = new google.maps.Marker({
-                                position: uluru,
-                                map: map
-                            });
+
+                            let count;
+
+                            for (count = 0; count < locations.length; count++) {
+                                new google.maps.Marker({
+                                    position: new google.maps.LatLng(locations[count][1], locations[count][2]),
+                                    map: map,
+                                    title: locations[count][0]
+                                });
+                            }
                         }
                     </script>
                     <script async defer
@@ -145,7 +164,7 @@
     </body>
 
     <script>
-        $("#search_button").on("click", function(){
+        $("#search_button").on("click", function () {
             var start_date = $("input[name=\"startdate\"]").val();
             var end_date = $("input[name=\"enddate\"]").val();
             var machine_id = $("#machine_id").val();
@@ -156,7 +175,7 @@
                 url: '/reports/machine_search',
                 type: 'POST',
                 data: {'start_date': start_date, 'end_date': end_date, 'machine_id': machine_id},
-                success: function(data) {
+                success: function (data) {
                     console.log(data);
                 }
             });
