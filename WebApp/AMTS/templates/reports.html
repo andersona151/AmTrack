@@ -56,10 +56,6 @@
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-
-        <!-- <div class="railserve">
-             <p>&nbsp;</p>
-         </div>-->
     </section>
 
     <section class="main-header">
@@ -80,7 +76,6 @@
                         </div>
                     </div>
                 </div> <!-- End col-md-4 -->
-
 
                 <!-- Start Date -->
                 <div class="col-sm-3">
@@ -142,18 +137,31 @@
                     <div id="map"></div>
                     <!--TODO: For loop markers at chosen parameters-->
                     <script>
+                        const locations = [
+                            ['Bondi Beach', -33.890542, 151.274856, 4],
+                            ['Coogee Beach', -33.923036, 151.259052, 5],
+                            ['Cronulla Beach', -34.028249, 151.157507, 3],
+                            ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+                            ['Maroubra Beach', -33.950198, 151.259302, 1]
+                        ];
+
                         function initMap() {
-                            const location = {lat: 33.9397129, lng: -84.5218453};
-                            {% comment %} Default Location: Atlanta, GA {% endcomment %}
+                            const myLatLng = {lat: -33.90, lng: 151.16};
+
                             const map = new google.maps.Map(document.getElementById('map'), {
-                                zoom: 13, {% comment %} Zoomed in more, but slower. Will be necessary. {%  endcomment %}
-                                center: location,
+                                zoom: 11,
+                                center: myLatLng
                             });
-                            const marker = new google.maps.Marker({
-                                position: location,
-                                title: "Marker Title",
-                                map: map
-                            });
+
+                            let count;
+
+                            for (count = 0; count < locations.length; count++) {
+                                new google.maps.Marker({
+                                    position: new google.maps.LatLng(locations[count][1], locations[count][2]),
+                                    map: map,
+                                    title: locations[count][0]
+                                });
+                            }
                         }
                     </script>
                     <script async defer
@@ -173,7 +181,6 @@
         </p>
     </footer>
     </body>
-
     <script>
         {% comment %}$("#search_button").click(function () {
             alert("Handler for .click() called.");
