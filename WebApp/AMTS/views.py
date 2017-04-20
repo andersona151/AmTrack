@@ -68,14 +68,15 @@ def machine_search(request):
     start_date = req_data['start_date']
     end_date = req_data['end_date']
     machine_id = req_data['machine_id']
-    start_date = datetime.strp(start_date, '%m/%d/%Y')
-    end_date = datetime.strp(end_date, '%m/%d/%Y')
+    start_date = datetime.strptime(start_date, '%m/%d/%Y')
+    end_date = datetime.strptime(end_date, '%m/%d/%Y')
 
-    range_data = Machine.objects.filter(date__range=[start_date, end_date])\
-                                .filter(machine_uid=machine_id)\
-                                .order_by('-CollectionTime')
-    range_data_idle = Machine.objects.filter(date__range=[start_date, end_date]) \
-        .filter(machine_uid=machine_id)\
+    range_data = Machine.objects.filter(CollectionTime__range=[start_date, end_date]) \
+        .filter(machine_uid=machine_id) \
+        .order_by('-CollectionTime')
+
+    range_data_idle = Machine.objects.filter(CollectionTime__range=[start_date, end_date]) \
+        .filter(machine_uid=machine_id) \
         .filter(idle=True) \
         .order_by('-CollectionTime')
 
@@ -84,6 +85,6 @@ def machine_search(request):
     time_on = get_time_on(range_data)  # THIS IS A TUPLE [days, hours]
     time_idle = get_time_idle(range_data_idle)  # THIS IS A TUPLE [days, hours]
     time_off = get_time_off(time_on, total_time)  # THIS IS A TUPLE [days, hours]
-    data = {'distance': dist, 'total_time': total_time, 'time_on': time_on, "time_idle": time_idle, 'time_off': time_off}
+    data = {'distance': dist, 'total_time': total_time, 'time_on': time_on, "time_idle": time_idle,
+            'time_off': time_off}
     return JsonResponse(data)
-
