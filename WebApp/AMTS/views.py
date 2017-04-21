@@ -71,20 +71,25 @@ def machine_search(request):
     start_date = datetime.strptime(start_date, '%m/%d/%Y')
     end_date = datetime.strptime(end_date, '%m/%d/%Y')
 
-    range_data = Machine.objects.filter(CollectionTime__range=[start_date, end_date]) \
-        .filter(machine_uid=machine_id) \
-        .order_by('-CollectionTime')
-
+    range_data = Machine.objects.filter(CollectionTime__range=[start_date, end_date]).filter(machine_uid=machine_id)
     range_data_idle = Machine.objects.filter(CollectionTime__range=[start_date, end_date]) \
+        .filter(machine_uid=machine_id)\
+        .filter(idle=True)
+    range_data_not_idle = Machine.objects.filter(CollectionTime__range=[start_date, end_date]) \
         .filter(machine_uid=machine_id) \
-        .filter(idle=True) \
-        .order_by('-CollectionTime')
+        .filter(idle=False)
 
     dist = distance_traveled(range_data)
     total_time = get_total_time(start_date, end_date)  # THIS IS A TUPLE [days, hours]
     time_on = get_time_on(range_data)  # THIS IS A TUPLE [days, hours]
     time_idle = get_time_idle(range_data_idle)  # THIS IS A TUPLE [days, hours]
     time_off = get_time_off(time_on, total_time)  # THIS IS A TUPLE [days, hours]
-    data = {'distance': dist, 'total_time': total_time, 'time_on': time_on, "time_idle": time_idle,
-            'time_off': time_off}
+    avg_speed = get_average_speed(range_data_not_idle)
+    data = {'distance': dist,
+            'total_time': total_time,
+            'time_on': time_on,
+            "time_idle": time_idle,
+            'time_off': time_off,
+            'avg_speed': avg_speed}
     return JsonResponse(data)
+
