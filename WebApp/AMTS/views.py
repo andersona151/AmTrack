@@ -51,13 +51,30 @@ def logout_view(request):
 
 @login_required
 @csrf_exempt
-def map_search(request):
+def map_markers(request):
     req_data = request.POST
+    # Gather parameters for the range data.
     start_date = req_data['start_date']
     end_date = req_data['end_date']
     machine_id = req_data['machine_id']
-    # calcs here
-    data = {'', '', }
+
+    # TODO: Declare the latitude & longitude -- STUCK
+    latitude = []
+    longitude = []
+
+    # Gather the latitudes based off above parameters
+    lat_range_data = Machine.objects.filter(CollectionTime__range=[start_date, end_date]) \
+        .filter(machine_uid=machine_id) \
+        .filter(latitude=latitude)
+
+    # Gather the longitudes based off above parameters
+    lon_range_data = Machine.objects.filter(CollectionTime__range=[start_date, end_date]) \
+        .filter(machine_uid=machine_id) \
+        .filter(longitude=longitude)
+
+    # TODO: Send off the longitude & latitude lists -- FIX
+    data = {'longitude': lat_range_data,
+            'latitude': lon_range_data}
     return JsonResponse(data)
 
 
@@ -73,7 +90,7 @@ def machine_search(request):
 
     range_data = Machine.objects.filter(CollectionTime__range=[start_date, end_date]).filter(machine_uid=machine_id)
     range_data_idle = Machine.objects.filter(CollectionTime__range=[start_date, end_date]) \
-        .filter(machine_uid=machine_id)\
+        .filter(machine_uid=machine_id) \
         .filter(idle=True)
     range_data_not_idle = Machine.objects.filter(CollectionTime__range=[start_date, end_date]) \
         .filter(machine_uid=machine_id) \
@@ -92,4 +109,3 @@ def machine_search(request):
             'time_off': time_off,
             'avg_speed': avg_speed}
     return JsonResponse(data)
-
