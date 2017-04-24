@@ -116,28 +116,17 @@
                 <!-- Right Container -->
                 <div class="col-md-6" id="output">
                     <div id="map"></div>
-                    <script id="initial_map">
-                        const locations = [
-                            ['Bondi Beach', -33.890542, 151.274856, 4],
-                            ['Coogee Beach', -33.923036, 151.259052, 5],
-                            ['Cronulla Beach', -34.028249, 151.157507, 3],
-                            ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-                            ['Maroubra Beach', -33.950198, 151.259302, 1]
-                        ];
+                    <script>
+                        function initMap(locations) {
 
-                        function initMap() {
-                            const myLatLng = {lat: -33.90, lng: 151.16};
-
+                            const myLatLng = {lat: 32.6581375, lng: -83.4668154}; // GEORGIA DEFAULT
                             const map = new google.maps.Map(document.getElementById('map'), {
-                                zoom: 11,
+                                zoom: 7,
                                 center: myLatLng
                             });
-
-                            let count;
-
                             for (count = 0; count < locations.length; count++) {
                                 new google.maps.Marker({
-                                    position: new google.maps.LatLng(locations[count][1], locations[count][2]),
+                                    position: new google.maps.LatLng(locations[count][0], locations[count][1]),
                                     map: map,
                                     title: locations[count][0]
                                 });
@@ -188,13 +177,12 @@
                     $('#time_on').text("Time Active: " + String(time_on[0]) + " days and " + String(time_on[1]) + " hours");
                     $('#time_off').text("Time Off: " + String(time_off[0]) + " days and " + String(time_off[1]) + " hours");
                     $('#avg_speed').text("Average MPH: " + String(avg_speed) + " mph");
-
-                    // TODO: AJAX Request for the Map Markers...
+                    
                     $.ajax({
                         url: '/reports/map_markers',
                         type: 'POST',
                         data: {'start_date': start_date, 'end_date': end_date, 'machine_id': machine_id},
-                        success: function(data) {
+                        success: function (data) {
                             console.log(data);
 //                            $('#map').remove();
 //                            $('#initial_map').remove();
@@ -202,35 +190,17 @@
                             var latitude = data['latitude'];
                             var longitude = data['longitude'];
                             const locations = [];
-                            for(iter = 0; iter < latitude.length; iter++){
+                            for (iter = 0; iter < latitude.length; iter++) {
                                 var temp = [latitude[iter], longitude[iter]];
                                 locations.push(temp);
                             }
-//                            updateMap(locations);
+                            //alert(locations);
+                            initMap(locations);
                         }
                     });
                 }
             });
         })
-    </script>
-
-    <script>
-        function updateMap(locations) {
-            const myLatLng = {lat: -33.90, lng: 151.16};
-
-            const map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 11,
-                center: myLatLng
-            });
-
-            for (count = 0; count < locations.length; count++) {
-                new google.maps.Marker({
-                    position: new google.maps.LatLng(locations[count][0], locations[count][1]),
-                    map: map,
-                    title: locations[count][0]
-                });
-            }
-        }
     </script>
 
 {% endblock %}

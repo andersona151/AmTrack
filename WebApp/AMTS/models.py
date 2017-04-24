@@ -14,3 +14,5 @@ class Machine(models.Model):
     CollectionTime = models.DateTimeField(auto_now_add=False, editable=True)
     speed = models.DecimalField(max_digits=9, decimal_places=3)
     idle = models.BooleanField(default=False)
+
+
