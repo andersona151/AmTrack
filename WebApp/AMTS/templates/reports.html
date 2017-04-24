@@ -114,9 +114,9 @@
                     <h3 id="avg_speed">Average Speed:</h3>
                 </div>
                 <!-- Right Container -->
-                <div class="col-md-6">
+                <div class="col-md-6" id="output">
                     <div id="map"></div>
-                    <script>
+                    <script id="initial_map">
                         const locations = [
                             ['Bondi Beach', -33.890542, 151.274856, 4],
                             ['Coogee Beach', -33.923036, 151.259052, 5],
@@ -196,13 +196,41 @@
                         data: {'start_date': start_date, 'end_date': end_date, 'machine_id': machine_id},
                         success: function(data) {
                             console.log(data);
+//                            $('#map').remove();
+//                            $('#initial_map').remove();
+//                            $('#output').html(data);
                             var latitude = data['latitude'];
                             var longitude = data['longitude'];
+                            const locations = [];
+                            for(iter = 0; iter < latitude.length; iter++){
+                                var temp = [latitude[iter], longitude[iter]];
+                                locations.push(temp);
+                            }
+//                            updateMap(locations);
                         }
                     });
                 }
             });
         })
+    </script>
+
+    <script>
+        function updateMap(locations) {
+            const myLatLng = {lat: -33.90, lng: 151.16};
+
+            const map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 11,
+                center: myLatLng
+            });
+
+            for (count = 0; count < locations.length; count++) {
+                new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[count][0], locations[count][1]),
+                    map: map,
+                    title: locations[count][0]
+                });
+            }
+        }
     </script>
 
 {% endblock %}
